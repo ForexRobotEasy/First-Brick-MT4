@@ -1,0 +1,107 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                    First Brick MT4|
+//|                                             forexroboteasy.com    |
+//|                                              Forex Robot Easy Team|
+//+------------------------------------------------------------------+
+
+// Define input parameters
+input int MaxPairs = 10; // Maximum number of pairs
+input int Frequency = 4; // Frequency of trades per year for a single pair
+input int MonthlyFrequency = 3; // Frequency of trades per month for multiple pairs
+
+// Define global variables
+int totalPairs = 0; // Total number of pairs selected by the user
+
+//+------------------------------------------------------------------+
+//|                        Expert Advisor Start Function             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Check if it's time to open a trade for a single pair
+   if (totalPairs == 1 && Bars('D1') == Frequency)
+   {
+      // Open trade for the selected pair
+      OpenTrade();
+   }
+   // Check if it's time to open a trade for multiple pairs
+   else if (totalPairs > 1 && Bars('D1') == MonthlyFrequency)
+   {
+      // Loop through each selected pair
+      for (int i = 0; i < totalPairs; i++)
+      {
+         // Open trade for the current pair
+         OpenTrade();
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//|                        Open Trade Function                        |
+//+------------------------------------------------------------------+
+void OpenTrade()
+{
+   // Implement the logic to confirm buy and sell zones on D1 timeframe
+   // and calculate the profit for a combination of trades
+   
+   // If buy zone is confirmed
+   if (ConfirmBuyZone())
+   {
+      // Open buy trade
+      Buy();
+   }
+   // If sell zone is confirmed
+   else if (ConfirmSellZone())
+   {
+      // Open sell trade
+      Sell();
+   }
+}
+
+//+------------------------------------------------------------------+
+//|                  Confirm Buy Zone Function                        |
+//+------------------------------------------------------------------+
+bool ConfirmBuyZone()
+{
+   // Implement the logic to confirm the buy zone on D1 timeframe
+   
+   // Return true if buy zone is confirmed, otherwise false
+   return true;
+}
+
+//+------------------------------------------------------------------+
+//|                  Confirm Sell Zone Function                       |
+//+------------------------------------------------------------------+
+bool ConfirmSellZone()
+{
+   // Implement the logic to confirm the sell zone on D1 timeframe
+   
+   // Return true if sell zone is confirmed, otherwise false
+   return true;
+}
+
+//+------------------------------------------------------------------+
+//|                         Buy Function                              |
+//+------------------------------------------------------------------+
+void Buy()
+{
+   // Implement the logic to open a buy trade
+   
+   // Add necessary code here
+   
+   // Print a confirmation message
+   Print('Buy trade opened');
+}
+
+//+------------------------------------------------------------------+
+//|                         Sell Function                             |
+//+------------------------------------------------------------------+
+void Sell()
+{
+   // Implement the logic to open a sell trade
+   
+   // Add necessary code here
+   
+   // Print a confirmation message
+   Print('Sell trade opened');
+}
